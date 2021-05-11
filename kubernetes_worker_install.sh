@@ -2,7 +2,7 @@
 
 # Step 1 : master, worker1, worker2 공통
 
-swapoff -a && sed -i '/swap/s/^/#/' /etc/fstab
+sudo swapoff -a && sudo sed -i '/swap/s/^/#/' /etc/fstab
 
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 br_netfilter
@@ -43,11 +43,6 @@ EOF
 sudo mkdir -p /etc/systemd/system/docker.service.d
 sudo systemctl daemon-reload
 sudo systemctl restart docker
-
-mkdir -p /etc/systemd/system/docker.service.d
-systemctl daemon-reload
-systemctl restart docker
-
 
 
 # Step2: worker1, worker2, ...
