@@ -22,6 +22,6 @@ sudo docker run hello-world
 
 sudo usermod -a -G docker ${USER}
 
-sudo apt-get install docker-compose
+sudo apt-get install -y docker-compose
 
 echo "done sucessfully"
