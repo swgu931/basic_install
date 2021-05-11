@@ -13,6 +13,7 @@ net.bridge.bridge-nf-call-iptables = 1
 EOF
 sudo sysctl --system
 
+sudo ufw disable
 
 sudo apt-get update -y
 sudo apt-get install -y apt-transport-https ca-certificates curl
