@@ -33,3 +33,6 @@ source /opt/ros/foxy/setup.bash
 
 sudo apt install -y python3-pip
 pip3 install -U argcomplete
+
+sudo apt install -y python3-colcon-common-extensions
+
