@@ -1,9 +1,9 @@
 #!/bin/bash
 
-sudo kubeadm reset
+sudo kubeadm reset 
 sudo systemctl stop kubelet
 dpkg --list | grep kube
-sudo apt-get purge -y kubeadm kubectl kubelet kubernetes-cni
+sudo apt-get purge -y --allow-change-held-packages kubeadm kubectl kubelet kubernetes-cni
 dpkg --list | grep kube
 sudo rm -rf /etc/kubernetes
 sudo rm -rf $HOME/.kube
