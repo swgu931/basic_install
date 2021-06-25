@@ -55,5 +55,10 @@ sudo systemctl restart docker
 
 echo "kubeadm join 10.0.2.100:6443 --token {token_from_master} --discovery-token-ca-cert-hash ${hash_from_master}"
 
+echo 'source <(kubectl completion bash)' >>~/.bashrc
 
+echo 'alias k=kubectl' >>~/.bashrc
+echo 'complete -F __start_kubectl k' >>~/.bashrc
+
+echo "Successfully done for worker"
 
