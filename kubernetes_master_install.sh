@@ -1,13 +1,14 @@
-# kubernetes install
+#!/bin/bash
 
+# kubernetes install
 
 sudo swapoff -a && sudo sed -i '/swap/s/^/#/' /etc/fstab
 
-cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+sudo cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 br_netfilter
 EOF
 
-cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+sudo at <<EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
@@ -15,12 +16,15 @@ sudo sysctl --system
 
 sudo ufw disable
 
-sudo apt-get update -y
-sudo apt-get install -y apt-transport-https ca-certificates curl
-sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
-echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-sudo apt-get update -y
-sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt update -y
+sudo apt install -y apt-transport-https ca-certificates curl
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+#sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+#echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt update -y
+sudo apt install -y kubelet kubeadm kubectl kubernetes-cni
+
 #sudo apt-mark hold kubelet kubeadm kubectl
 
 sudo systemctl start kubelet
