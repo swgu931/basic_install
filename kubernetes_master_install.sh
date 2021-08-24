@@ -65,4 +65,7 @@ echo 'source <(kubectl completion bash)' >>~/.bashrc
 echo 'alias k=kubectl' >>~/.bashrc
 echo 'complete -F __start_kubectl k' >>~/.bashrc
 
+echo "copy from /usr/bin/kubectl to /usr/local/bin/kubectl for preventing file not find error"
+sudo cp /usr/bin/kubectl /usr/local/bin/
+
 echo "Successfully done"
