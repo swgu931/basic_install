@@ -1,0 +1,37 @@
+#로컬변경사힝이 있을 경우, 로컬 브랜치 생성하여 커밋하고, main으로 변경후, cherry-pick 으로 머지함.
+
+git checkout -b commit1
+git status
+git branch
+git log
+
+git add .
+git commmit
+git status
+git log
+git branch
+
+git checkout main
+git pull
+git status
+git branch
+git log
+git branch
+
+git cherry-pick commit1
+git status
+git log
+git show
+git status
+git show --stat
+git branch
+git commit --amend
+git log
+git push 
+git log
+git status
+git branch
+
+#로컬 브랜치 필요없을시 삭제 
+git branch -D commit1
+
