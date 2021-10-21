@@ -54,6 +54,7 @@ sudo systemctl restart docker
 # Step2: worker1, worker2, ...
 
 echo "kubeadm join 10.0.2.100:6443 --token {token_from_master} --discovery-token-ca-cert-hash ${hash_from_master}"
+## kubeadm --print-join-command @master
 
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 

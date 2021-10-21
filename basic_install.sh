@@ -14,5 +14,5 @@ sudo apt-get install \
 
 sudo dpkg-reconfigure ca-certificates 
 
-sudo echo "export UNZIP=\"-O cp949\"" >> /etc/profile
-sudo echo "export ZIPINFO=\"-O cp949\"" >> /etc/profile
+#sudo echo "export UNZIP=\"-O cp949\"" >> /etc/profile
+#sudo echo "export ZIPINFO=\"-O cp949\"" >> /etc/profile
