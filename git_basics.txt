@@ -35,3 +35,12 @@ git branch
 #로컬 브랜치 필요없을시 삭제 
 git branch -D commit1
 
+
+#git fork 후에 원래 git과 동기화 하는 방법
+
+# git fork from [original-site]
+git clone [my-forked-site]
+cd [downloaded-folder]
+git remote add upstream [original-site]
+git pull upstream master
+
