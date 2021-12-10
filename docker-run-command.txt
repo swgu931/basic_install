@@ -1,0 +1,20 @@
+
+---
+xhost + 
+mkdir /tmp/XDG_RUNTIME_DIR
+export DISPLAY=10.222.79.64:0  #현재 보고자하는 [local host ip]:0
+docker run -it --privileged --rm --net host \
+--name pendulum \
+-v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+-v /dev:/dev:rw \
+-v /tmp/XDG_RUNTIME_DIR:/tmp/XDG_RUNTIME_DIR:rw \
+-e DISPLAY=$DISPLAY 
+-e QT_X11_NO_MITSHM=1 \
+-e RUNLEVEL=3 \
+-e XDG_RUNTIME_DIR=/tmp/XDG_RUNTIME_DIR \
+
+rtt-pendulum:foxy /bin/bash
+---
+
+
+
