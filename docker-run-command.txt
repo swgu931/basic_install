@@ -1,3 +1,5 @@
+sudo apt-get install xserver-xorg xserver-xorg-core openbox xauth
+sudo apt-get install ubuntu-desktop
 
 ---
 xhost + 
