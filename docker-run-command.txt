@@ -14,7 +14,6 @@ docker run -it --privileged --rm --net host \
 -e QT_X11_NO_MITSHM=1 \
 -e RUNLEVEL=3 \
 -e XDG_RUNTIME_DIR=/tmp/XDG_RUNTIME_DIR \
-
 rtt-pendulum:foxy /bin/bash
 ---
 
