@@ -44,3 +44,7 @@ cd [downloaded-folder]
 git remote add upstream [original-site]
 git pull upstream master
 
+
+# git push for review 
+# git push origin HEAD:refs/for/{branch_name}
+git push origin HEAD:refs/for/foxy
