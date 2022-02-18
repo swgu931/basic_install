@@ -48,3 +48,20 @@ git pull upstream master
 # git push for review 
 # git push origin HEAD:refs/for/{branch_name}
 git push origin HEAD:refs/for/foxy
+
+
+# git migration to other new git repo.
+
+mkdir backup
+cd backup
+
+git clone --mirror https://github.com/oldone
+cd oldone
+git remote set-url --push origin https://github.com/newone
+git push --mirror
+git remote -v
+git clone https://github.com/lge-cloud-ai-robot/newone
+cd newone
+git remote -v
+
+
