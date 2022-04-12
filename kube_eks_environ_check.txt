@@ -1,0 +1,63 @@
+# Kubernetes connection setting on Gitlab on existing Cluster (EKS)
+
+
+# 1. Get the certificate
+kubectl get secrets
+
+kubectl get secret <secret name> -o jsonpath="{['data']['ca\.crt']}" | base64 --decode
+
+
+
+
+# 2. Create admin token
+## 2.1 Create a file called eks-admin-service-account.yaml
+```
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: eks-admin
+  namespace: kube-system
+```
+
+## 2.2 Apply the service account to your cluster
+
+kubectl apply -f eks-admin-service-account.yaml
+
+## 3.3 Create a file called eks-admin-cluster-role-binding.yaml with contents
+```
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: eks-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: eks-admin
+  namespace: kube-system
+```
+
+## 3.4 Apply the cluster role binding to your cluster
+
+kubectl apply -f eks-admin-cluster-role-binding.yaml
+
+## 3.5 Retrieve the token for the eks-admin service account
+
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep eks-admin | awk '{print $1}')
+
+### Copy the <authentication_token> value from the output
+
+
+
+# 3. Locate the the API server endpoint so GitLab can connect to the cluster. This is displayed on
+the AWS EKS console, when viewing the EKS cluster details.
+
+
+# 4. 
+
+
+
+
+

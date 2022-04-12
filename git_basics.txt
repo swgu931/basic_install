@@ -1,3 +1,21 @@
+# create a new repository on the command line
+
+echo "# ebme-robotmenu" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/new-repo.git
+git push -u origin main
+
+
+# push an existing repository from the command line
+
+git remote add origin https://github.com/new-repo.git
+git branch -M main
+git push -u origin main
+
+
 #로컬변경사힝이 있을 경우, 로컬 브랜치 생성하여 커밋하고, main으로 변경후, cherry-pick 으로 머지함.
 
 git checkout -b commit1
@@ -63,5 +81,8 @@ git remote -v
 git clone https://github.com/lge-cloud-ai-robot/newone
 cd newone
 git remote -v
+
+# git workflow good site
+https://github.com/confluentinc/ksql/blob/master/CONTRIBUTING.md
 
 
