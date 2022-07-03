@@ -86,3 +86,35 @@ git remote -v
 https://github.com/confluentinc/ksql/blob/master/CONTRIBUTING.md
 
 
+
+
+# 소스 변경시 반영
+
+git clone https://github.com/ssssssss
+# 소스 수정
+git checkout -b change-value
+git status
+git add guestbook/
+git commit -m "change-value"
+git push origin change-value
+
+
+# 예전 소스로 revert 방법
+
+git checkout master
+git pull origin  # 최신 master branch 를 가져옴
+git log
+#commit 한 소스를 revert 하고, 예전 버전으로 되돌리기 위해,
+# git log 에서 revert할 해쉬값 선택/복사
+git revert 4ddf59sdljfl340slkdjflkjksldjf3939ksdjlfks
+
+#---
+#원복하는 이유 명시 저장
+#---
+git log
+#---
+#소스 수정 확인
+#---
+git push origin master
+
+
