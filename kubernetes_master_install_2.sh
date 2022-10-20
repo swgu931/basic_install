@@ -1,3 +1,5 @@
+# https://computingforgeeks.com/deploy-kubernetes-cluster-on-ubuntu-with-kubeadm/
+# https://www.itzgeek.com/how-tos/linux/ubuntu-how-tos/install-cri-o-on-ubuntu-22-04.html
 
 sudo hostnamectl set-hostname kube-master-xxx(선택사항)
 sudo vi /etc/hosts
