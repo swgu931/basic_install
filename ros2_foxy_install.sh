@@ -6,6 +6,7 @@
 locale  # check for UTF-8
 
 sudo apt update -y && sudo apt install locales
+### if update error happend, then you use this command : sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys <pub key>
 sudo locale-gen en_US en_US.UTF-8
 sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 export LANG=en_US.UTF-8
