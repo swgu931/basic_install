@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ros-demo-deployment
+  labels:
+    app: ros-talker
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: ros-demo
+  template:
+    metadata:
+      labels:
+        app: ros-demo
+    spec:
+      containers:
+      - name: talker 
+        image: ros:foxy
+        command: ["/bin/bash", "-c"]
+        args: ["source /opt/ros/foxy/setup.bash && apt update && apt install -y curl && curl https://raw.githubusercontent.com/canonical/robotics-blog-k8s/main/publisher.py > publisher.py && /bin/python3 publisher.py talker"]
+      - name: listener
+        image: ros:foxy
+        command: ["/bin/bash", "-c"]
+        args: ["source /opt/ros/foxy/setup.bash && apt update && apt install -y curl && curl https://raw.githubusercontent.com/canonical/robotics-blog-k8s/main/subscriber.py > subscriber.py && /bin/python3 subscriber.py listener"]

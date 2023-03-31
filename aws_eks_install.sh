@@ -19,3 +19,11 @@ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/d
 sudo mv /tmp/eksctl /usr/local/bin
 eksctl version
 
+
+
+# to change eks node number
+
+# 노드그룹명 확인
+eksctl get nodegroup --cluster myeks
+# 노드 수 변경
+eksctl scale nodegroup --cluster myeks --name <GROUP> -N <NUM>
