@@ -15,3 +15,7 @@ sudo rm -rf /usr/bin/kubeadm
 sudo rm -rf /usr/local/bin/kubelet
 sudo rm -rf /usr/bin/kubelet
 sudo rm -rf /var/lib/kubelet
+
+sudo rm -rf /opt/cni/*
+sudo rm /usr/share/keyrings/kubernetes-archive-keyring.gpg
+
