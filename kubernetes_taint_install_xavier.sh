@@ -4,6 +4,7 @@
 
 #1)
 sudo hostnamectl set-hostname kube-selfbalancing-robot
+sudo rdate -p time.bora.net
 
 exec bash
 #2)
@@ -117,8 +118,11 @@ sudo apt update
 sudo apt install -y kubelet=1.24.3-00 kubeadm=1.24.3-00 kubectl=1.24.3-00
 sudo apt-mark hold kubelet kubeadm kubectl
 
+sudo systemctl daemon-reload
+sudo systemctl enable --now kubelet
 
 #14) kubernetes bringup
+sudo kubeadm reset --cri-socket /var/run/crio/crio.sock
 sudo kubeadm init --cri-socket /var/run/crio/crio.sock
 
 #15) 환경 세팅
