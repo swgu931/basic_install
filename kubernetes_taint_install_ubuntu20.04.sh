@@ -53,8 +53,10 @@ sudo rm -rf /etc/cni/net.d/*
 #8) 수정필요
 sudo apt -y install containerd.io
 sudo containerd config default | tee /etc/containerd/config.toml
-sudo vi /etc/containerd/config.toml
-    disabled_plugins = [""]		---> CRI 제거
+sudo cp /etc/containerd/config.toml /etc/containerd/config.toml.save
+sudo sed 's/cri//g' /etc/containerd/config.toml.save > /etc/containerd/config.toml
+# sudo vi /etc/containerd/config.toml
+#     disabled_plugins = [""]		---> CRI 제거
 
 sudo systemctl restart containerd.service
 sudo systemctl status containerd.service
