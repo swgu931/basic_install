@@ -132,6 +132,8 @@ find . -type f -size -20M -not -path "./.git/*" -exec git add {} +
 
 find . -type f -size +20M -not -path "./.git/*"
 
+
+git lfs track "path/to/your/file"
 find . -type f -size +20M -not -path "./.git/*" -exec git lfs track "{}" \;
 
 git add ./.gitattributes
