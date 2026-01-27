@@ -62,6 +62,10 @@ ldconfig -p | grep libcudart
 pip uninstall -y torch torchvision torchaudio 
 pip cache purge
 
+# 버전 확인
+python -m pip index versions torch --index-url https://download.pytorch.org/whl/cu129
+python -m pip index versions torch --index-url https://download.pytorch.org/whl/cu130
+
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 
 
