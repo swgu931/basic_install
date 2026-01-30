@@ -90,7 +90,7 @@ curl -X POST "http://10.231.182.159:8080/v1/chat/completions" \
 		"model": "LGAI-EXAONE/EXAONE-4.0-32B-FP8",
 		"messages": [
 			{
-				"role": "user",
+			    "role": "user",
 				"content": "What is the capital of France?"
 			}
 		],
