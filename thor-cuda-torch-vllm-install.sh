@@ -5,6 +5,8 @@ sudo apt install -y libcudart12
 
 ldconfig -p | grep libcudart
 
+sudo apt install -y libnuma-dev
+
 pip uninstall -y vllm
 
 # uv install
@@ -40,6 +42,8 @@ export LD_LIBRARY_PATH="$TORCH_LIB:$LD_LIBRARY_PATH"
 
 # 로더가 찾는지 테스트
 python -c "import ctypes; ctypes.CDLL('libtorch_cuda.so'); print('libtorch_cuda.so load OK')"
+python -c "import torch; print(torch.cuda.is_available(), torch.cuda.device_count())"
+
 
 ## 영구 적용
 sudo tee /etc/ld.so.conf.d/torch.conf >/dev/null <<EOF
@@ -55,12 +59,31 @@ python -m pip install "numpy==1.26.4" "scipy==1.11.4"
 python -m pip install setuptools_scm
 python -m pip uninstall -y opencv-python-headless opencv-python opencv-contrib-python opencv-contrib-python-headless
 
+
+
+
+
+# ## vllm intall
+
 # https://docs.vllm.ai/en/latest/getting_started/installation/gpu/index.html#full-build
 # install PyTorch first, either from PyPI or from source
 git clone https://github.com/vllm-project/vllm.git
 cd vllm
 # pip install -e . does not work directly, only uv can do this
-python -m pip install -e . --no-build-isolation
+
+python -m pip install grpcio-tools
+export PIP_NO_BUILD_ISOLATION=0
+unset PIP_NO_BUILD_ISOLATION
+sudo apt install -y ninja-build
+export CMAKE_MAKE_PROGRAM=$(which ninja)
+
+rm -rf build/ dist/ *.egg-info .eggs/ cmake-build-debug/ .deps/
+
+python -c "import os; print('cpu core number : ', os.cpu_count())"
+
+MAX_JOBS=8 
+
+python -m pip install -e . --no-build-isolation --no-cache-dir --no-deps
 
 python -m pip install "numpy==1.26.4" "scipy==1.11.4" 
 
