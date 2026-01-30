@@ -164,12 +164,11 @@ ldconfig -p | grep libtorch_cuda || true
 
 git clone https://github.com/vllm-project/vllm.git
 cd vllm
-# pip install -e . does not work directly, only uv can do this
-uv pip install -e .
 
 
-sudo apt update && sudo apt upgrade -y
-sudo apt install -y python3-venv python3-dev python3.12-dev uv
+rm -rf build/ dist/ *.egg-info .eggs/ cmake-build-debug/ .deps/
+python -m pip install -e . --no-build-isolation --no-cache-dir --no-deps
+
 
 ```
 
@@ -260,7 +259,11 @@ export TRITON_PTXAS_PATH="${CUDA_HOME}/bin/ptxas"
 
 vllm serve /home/lge/ai-models/exaone-4.0-32b-fp8/ \
   --port 8080 \
+  --max-model-len 32768 \VLLM_ATTENTION_BACKEND=FLASHINFER vllm serve /home/lge/ai-models/exaone-4.0-32b-fp8/ \
+  --port 8080 \
   --max-model-len 32768 \
+  --gpu-memory-utilization 0.85 \
+  --enforce-eager
   --gpu-memory-utilization 0.85
 
 
@@ -279,6 +282,19 @@ vllm serve /home/lge/ai-models/exaone-4.0-32b-fp8/ \
   --gpu-memory-utilization 0.85 \
   --served-model-name LGAI-EXAONE/EXAONE-4.0-32B-FP8
   --enforce-eager
+
+
+
+# 1. FlashInfer 사용 (Thor에서 권장됨)
+VLLM_ATTENTION_BACKEND=FLASHINFER vllm serve /home/lge/ai-models/exaone-4.0-32b-fp8/ \
+  --port 8080 \
+  --max-model-len 32768 \
+  --gpu-memory-utilization 0.85 \
+  --enforce-eager
+# 2. 만약 위 방법이 안 되면 Xformers 사용
+# VLLM_ATTENTION_BACKEND=XFORMERS vllm serve ...  
+
+
 
 ## 
 ```
@@ -391,7 +407,7 @@ curl http://localhost:8080/v1/chat/completions \
 curl http://10.231.182.159:8080/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "EXAONE-4.0-32B-FP8",
+    "model": "LGAI-EXAONE/EXAONE-4.0-32B-FP8",
     "messages": [{"role": "user", "content": "안녕하세요, 한국어로 대화할 수 있나요?"}],
     "temperature": 0.1
   }'
