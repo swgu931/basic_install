@@ -35,7 +35,7 @@ export HF_DATASETS_OFFLINE=1
 
 # ptxas 경로 없어서 에러
 export CUDA_HOME=/usr/local/cuda
-export PATH="${CUDA_HOME}/bin:${PATH}"
+export PATH="${CUsource vllm_env/bin/activateDA_HOME}/bin:${PATH}"
 export TRITON_PTXAS_PATH="${CUDA_HOME}/bin/ptxas"
 
 vllm serve /home/lge/ai-models/exaone-4.0-32b-fp8/ \
@@ -44,7 +44,9 @@ vllm serve /home/lge/ai-models/exaone-4.0-32b-fp8/ \
   --gpu-memory-utilization 0.85 \
   --served-model-name LGAI-EXAONE/EXAONE-4.0-32B-FP8 \
   --dtype bfloat16 \
+  --trust-remote-code \
   --enforce-eager
+# trust-remote-code 옵션 ????
 
 # 4096 8192  16384  32768 65536 
 
@@ -64,6 +66,7 @@ vllm serve /home/lge/ai-models/exaone-4.0-32b-fp8/ \
   --max-model-len 65536 \
   --gpu-memory-utilization 0.85 \
   --served-model-name LGAI-EXAONE/EXAONE-4.0-32B-FP8 \
+  --trust-remote-code \
   --enforce-eager
 
 
