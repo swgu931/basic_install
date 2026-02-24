@@ -100,7 +100,7 @@ PY
 )" | grep -E "libtorch_cuda\.so|libtorch_cpu\.so" || true
 
 아래와 같이 나옴
--rwxrwxr-x  1 lge lge 249319081 Jan 28 14:19 libtorch_cpu.so
+-rwxrwxr-x  1 lge lge 249319081 Jan 28 14:19 libtorch_cpu.souv python install 3.12
 -rwxrwxr-x  1 lge lge 509024049 Jan 28 14:19 libtorch_cuda.so
 
 *여기서 libtorch_cuda.so가 아예 없으면: 지금 설치된 torch는 CUDA 패키지처럼 보이더라도 실제로 CUDA lib가 빠진 빌드일 수 있습니다(그 경우 vLLM은 절대 못 뜹니다). “torch/lib에 libtorch_cuda.so가 있어야 CUDA 설치가 맞다”는 확인법도 동일하게 안내됩니다.

@@ -196,7 +196,7 @@ BASH
 vllm serve LGAI-EXAONE/EXAONE-4.0-32B-FP8 \
   --quantization fp8 \
   --dtype fp8
-5.2. GPU 메모리 최적화
+5.2. GPU 메모리 최적화uv python install 3.12
 BASH
 
 vllm serve LGAI-EXAONE/EXAONE-4.0-32B-FP8 \
