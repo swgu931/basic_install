@@ -25,6 +25,7 @@ sudo apt update
 sudo apt upgrade
 sudo apt install ros-jazzy-desktop
 sudo apt install ros-jazzy-ros-base
+sudo apt install ros-jazzy-rmw-cyclonedds-cpp
 
 # Install additional RMW implementations (optional)
 
