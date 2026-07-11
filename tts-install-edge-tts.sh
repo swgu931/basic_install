@@ -21,3 +21,5 @@ pip3 install edge-tts
 ## 15%빠르게
 ##edge-tts --voice en-US-BrianNeural --rate=+15% --text "I can also speak a bit faster if you want to save time." --write-media fast.mp3
 
+# edge-tts --voice en-US-BrianNeural --file ./script.txt --write-media script.mp3
+
